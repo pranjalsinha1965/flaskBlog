@@ -13,7 +13,6 @@ Runs on Flask development server
 
 ## 📁 Project Structure
 ```cpp
-Copy code
 Flask_Blog/
 │── flaskblog.py
 │── forms.py
@@ -26,21 +25,18 @@ Flask_Blog/
 ### 1️⃣ Install dependencies
 
 ```bash
-Copy code
 pip install flask flask-wtf wtforms email_validator
 2️⃣ Set the Flask application
 (MINGW64 / Git Bash)
 ```
 
 ```bash
-Copy code
 export FLASK_APP=flaskblog.py
 ```
 
 ### 3️⃣ Run the development server
 
 ```bash
-Copy code
 flask run
 ``` 
 
