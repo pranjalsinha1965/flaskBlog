@@ -76,5 +76,9 @@ flask run
 
 2. [starter code sidebar, static/main.css](https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog)
 
+DATABASE: 
 
+1. pip install flask-sqlalchemy
+2. python.exe -m pip install --upgrade pip
+3. 
 
