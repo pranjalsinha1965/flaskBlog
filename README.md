@@ -76,6 +76,8 @@ flask run
 
 2. [starter code sidebar, static/main.css](https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog)
 
+3. [Bootstrapped Modal](https://getbootstrap.com/docs/4.0/components/modal/)
+
 DATABASE: 
 
 1. pip install flask-sqlalchemy
