@@ -1,10 +1,16 @@
 from datetime import datetime
-from flaskblog import db, login_manager 
+# Instead of TimedJSONWebSignatureSerializer import URLSafeTimedSerializer because of tokenized error 
+from itsdangerous import URLSafeTimedSerializer as Serializer 
+from flaskblog import db, login_manager, app, Mail 
+from flask import current_app 
 from flask_login import UserMixin 
 
 @login_manager.user_loader
 def load_user(user_id): 
     return User.query.get(int(user_id))
+
+from itsdangerous import URLSafeTimedSerializer as Serializer
+from flask import current_app
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,8 +20,24 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
-    def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+    # GENERATE PASSWORD RESET TOKEN
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        return s.dumps({'user_id': self.id}, salt='password-reset-salt')
+
+    # VERIFY RESET TOKEN
+    @staticmethod
+    def verify_reset_token(token, expires_sec=1800):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(
+                token,
+                salt='password-reset-salt',
+                max_age=expires_sec
+            )['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
 
 
 class Post(db.Model):
