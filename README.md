@@ -78,9 +78,12 @@ flask run
 
 3. [Bootstrapped Modal](https://getbootstrap.com/docs/4.0/components/modal/)
 
+4. [Error Base](https://letscodemore.medium.com/solved-smtplib-smtpauthenticationerror-535-b5-7-8-username-and-password-not-accepted-2b26110f9f3b)
+
 DATABASE: 
 
 1. pip install flask-sqlalchemy
 2. python.exe -m pip install --upgrade pip
 3. 
+
 
